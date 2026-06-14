@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duke David — Web3 Community Professional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+–navy: #0A0E1A;
+–navy-mid: #111827;
+–navy-card: #151C2E;
+–teal: #00D4C8;
+–teal-dim: rgba(0,212,200,0.12);
+–teal-glow: rgba(0,212,200,0.25);
+–gold: #F5C842;
+–white: #F0EDE8;
+–slate: #6B7A99;
+–slate-light: #A0AABF;
+–border: rgba(0,212,200,0.15);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–navy);
+color: var(–white);
+font-family: ‘Inter’, sans-serif;
+font-size: 16px;
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+display: flex; align-items: center; justify-content: space-between;
+padding: 18px 48px;
+background: rgba(10,14,26,0.85);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid var(–border);
+}
+
+.nav-logo {
+font-family: ‘Space Mono’, monospace;
+font-size: 14px;
+color: var(–teal);
+letter-spacing: 0.08em;
+}
+
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+font-family: ‘Inter’, sans-serif;
+font-size: 13px;
+font-weight: 500;
+letter-spacing: 0.05em;
+color: var(–slate-light);
+text-decoration: none;
+text-transform: uppercase;
+transition: color 0.2s;
+}
+.nav-links a:hover { color: var(–teal); }
+
+.nav-cta {
+font-family: ‘Space Mono’, monospace;
+font-size: 12px;
+color: var(–navy);
+background: var(–teal);
+padding: 8px 20px;
+border-radius: 2px;
+text-decoration: none;
+font-weight: 700;
+letter-spacing: 0.04em;
+transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ── HERO ── */
+.hero {
+min-height: 100vh;
+display: flex; align-items: center;
+padding: 120px 48px 80px;
+position: relative;
+overflow: hidden;
+}
+
+.hero-bg {
+position: absolute; inset: 0;
+background:
+radial-gradient(ellipse 60% 50% at 70% 50%, rgba(0,212,200,0.07) 0%, transparent 70%),
+radial-gradient(ellipse 40% 60% at 20% 80%, rgba(245,200,66,0.04) 0%, transparent 60%);
+pointer-events: none;
+}
+
+.hero-grid {
+position: absolute; inset: 0;
+background-image:
+linear-gradient(rgba(0,212,200,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(0,212,200,0.04) 1px, transparent 1px);
+background-size: 60px 60px;
+pointer-events: none;
+mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+}
+
+.hero-inner { position: relative; max-width: 760px; }
+
+.hero-eyebrow {
+font-family: ‘Space Mono’, monospace;
+font-size: 12px;
+color: var(–teal);
+letter-spacing: 0.15em;
+text-transform: uppercase;
+margin-bottom: 28px;
+display: flex; align-items: center; gap: 12px;
+}
+.hero-eyebrow::before {
+content: ‘’;
+display: inline-block;
+width: 32px; height: 1px;
+background: var(–teal);
+}
+
+.hero-terminal {
+font-family: ‘Space Mono’, monospace;
+font-size: clamp(28px, 4vw, 54px);
+font-weight: 700;
+line-height: 1.15;
+color: var(–white);
+margin-bottom: 32px;
+}
+
+.hero-terminal .typed-line {
+display: block;
+}
+
+.hero-terminal .teal { color: var(–teal); }
+.hero-terminal .gold { color: var(–gold); }
+
+.cursor {
+display: inline-block;
+width: 3px; height: 1em;
+background: var(–teal);
+vertical-align: middle;
+margin-left: 4px;
+animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.hero-sub {
+font-size: 18px;
+font-weight: 300;
+color: var(–slate-light);
+max-width: 520px;
+line-height: 1.7;
+margin-bottom: 48px;
+}
+
+.hero-tags {
+display: flex; flex-wrap: wrap; gap: 10px;
+margin-bottom: 48px;
+}
+.tag {
+font-family: ‘Space Mono’, monospace;
+font-size: 11px;
+color: var(–teal);
+border: 1px solid var(–border);
+padding: 5px 14px;
+border-radius: 2px;
+background: var(–teal-dim);
+letter-spacing: 0.06em;
+}
+
+.hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+
+.btn-primary {
+font-family: ‘Space Mono’, monospace;
+font-size: 13px;
+font-weight: 700;
+color: var(–navy);
+background: var(–teal);
+padding: 14px 32px;
+border-radius: 2px;
+text-decoration: none;
+letter-spacing: 0.05em;
+transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(0,212,200,0.3);
+}
+
+.btn-ghost {
+font-family: ‘Space Mono’, monospace;
+font-size: 13px;
+font-weight: 400;
+color: var(–teal);
+padding: 14px 32px;
+border: 1px solid var(–border);
+border-radius: 2px;
+text-decoration: none;
+letter-spacing: 0.05em;
+transition: background 0.2s, border-color 0.2s;
+}
+.btn-ghost:hover {
+background: var(–teal-dim);
+border-color: var(–teal);
+}
+
+/* ── SECTION SHELL ── */
+section { padding: 100px 48px; }
+.section-inner { max-width: 1000px; margin: 0 auto; }
+
+.section-label {
+font-family: ‘Space Mono’, monospace;
+font-size: 11px;
+color: var(–teal);
+letter-spacing: 0.18em;
+text-transform: uppercase;
+margin-bottom: 12px;
+display: flex; align-items: center; gap: 10px;
+}
+.section-label::after {
+content: ‘’;
+flex: 1; max-width: 48px; height: 1px;
+background: var(–teal); opacity: 0.5;
+}
+
+.section-heading {
+font-family: ‘Space Grotesk’, sans-serif;
+font-size: clamp(28px, 3.5vw, 42px);
+font-weight: 700;
+color: var(–white);
+margin-bottom: 16px;
+line-height: 1.2;
+}
+
+.section-sub {
+font-size: 16px;
+color: var(–slate-light);
+max-width: 560px;
+line-height: 1.7;
+margin-bottom: 64px;
+}
+
+/* ── ABOUT ── */
+#about { background: var(–navy-mid); }
+
+.about-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 64px;
+align-items: start;
+}
+
+.about-text p {
+font-size: 16px;
+color: var(–slate-light);
+line-height: 1.8;
+margin-bottom: 20px;
+}
+
+.about-text p strong { color: var(–white); font-weight: 600; }
+
+.about-stats {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 2px;
+}
+
+.stat-card {
+background: var(–navy-card);
+border: 1px solid var(–border);
+padding: 28px 24px;
+position: relative;
+overflow: hidden;
+}
+.stat-card::before {
+content: ‘’;
+position: absolute; top: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, var(–teal), transparent);
+}
+.stat-number {
+font-family: ‘Space Mono’, monospace;
+font-size: 36px;
+font-weight: 700;
+color: var(–teal);
+display: block;
+line-height: 1;
+margin-bottom: 6px;
+}
+.stat-label {
+font-size: 13px;
+color: var(–slate);
+letter-spacing: 0.03em;
+}
+
+/* ── SKILLS ── */
+#skills { background: var(–navy); }
+
+.skills-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2px;
+}
+
+.skill-card {
+background: var(–navy-card);
+border: 1px solid var(–border);
+padding: 36px 32px;
+position: relative;
+transition: border-color 0.25s, transform 0.25s;
+}
+.skill-card:hover {
+border-color: var(–teal);
+transform: translateY(-4px);
+z-index: 1;
+}
+
+.skill-icon {
+font-size: 28px;
+margin-bottom: 18px;
+display: block;
+}
+
+.skill-title {
+font-family: ‘Space Grotesk’, sans-serif;
+font-size: 17px;
+font-weight: 600;
+color: var(–white);
+margin-bottom: 10px;
+}
+
+.skill-desc {
+font-size: 14px;
+color: var(–slate);
+line-height: 1.65;
+}
+
+/* ── EXPERIENCE ── */
+#experience { background: var(–navy-mid); }
+
+.timeline { position: relative; }
+.timeline::before {
+content: ‘’;
+position: absolute;
+left: 0; top: 8px; bottom: 0;
+width: 1px;
+background: linear-gradient(to bottom, var(–teal), transparent);
+}
+
+.timeline-item {
+padding-left: 40px;
+margin-bottom: 52px;
+position: relative;
+}
+.timeline-item::before {
+content: ‘’;
+position: absolute;
+left: -5px; top: 8px;
+width: 11px; height: 11px;
+border-radius: 50%;
+background: var(–teal);
+box-shadow: 0 0 10px var(–teal-glow);
+}
+
+.timeline-meta {
+display: flex; align-items: center; gap: 16px;
+margin-bottom: 10px;
+flex-wrap: wrap;
+}
+
+.timeline-role {
+font-family: ‘Space Grotesk’, sans-serif;
+font-size: 18px;
+font-weight: 600;
+color: var(–white);
+}
+
+.timeline-company {
+font-family: ‘Space Mono’, monospace;
+font-size: 12px;
+color: var(–teal);
+background: var(–teal-dim);
+padding: 3px 10px;
+border-radius: 2px;
+border: 1px solid var(–border);
+}
+
+.timeline-period {
+font-family: ‘Space Mono’, monospace;
+font-size: 11px;
+color: var(–slate);
+letter-spacing: 0.06em;
+margin-left: auto;
+}
+
+.timeline-desc {
+font-size: 14px;
+color: var(–slate-light);
+line-height: 1.7;
+max-width: 640px;
+}
+
+/* ── PLATFORMS ── */
+#platforms { background: var(–navy); }
+
+.platforms-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 2px;
+}
+
+.platform-card {
+background: var(–navy-card);
+border: 1px solid var(–border);
+padding: 28px 24px;
+text-align: center;
+transition: border-color 0.2s;
+}
+.platform-card:hover { border-color: var(–teal); }
+.platform-logo { font-size: 32px; margin-bottom: 12px; }
+.platform-name {
+font-family: ‘Space Grotesk’, sans-serif;
+font-size: 15px;
+font-weight: 600;
+color: var(–white);
+margin-bottom: 6px;
+}
+.platform-role { font-size: 12px; color: var(–slate); }
+
+/* ── CONTACT ── */
+#contact { background: var(–navy-mid); }
+
+.contact-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 64px;
+align-items: start;
+}
+
+.contact-links { display: flex; flex-direction: column; gap: 16px; }
+
+.contact-link {
+display: flex; align-items: center; gap: 18px;
+background: var(–navy-card);
+border: 1px solid var(–border);
+padding: 18px 24px;
+border-radius: 2px;
+text-decoration: none;
+transition: border-color 0.2s, transform 0.2s;
+}
+.contact-link:hover {
+border-color: var(–teal);
+transform: translateX(4px);
+}
+
+.contact-link-icon { font-size: 20px; }
+.contact-link-info {}
+.contact-link-label {
+font-family: ‘Space Mono’, monospace;
+font-size: 10px;
+color: var(–slate);
+letter-spacing: 0.1em;
+text-transform: uppercase;
+margin-bottom: 3px;
+}
+.contact-link-value {
+font-size: 14px;
+font-weight: 500;
+color: var(–teal);
+}
+
+.contact-cta h3 {
+font-family: ‘Space Grotesk’, sans-serif;
+font-size: 26px;
+font-weight: 700;
+color: var(–white);
+margin-bottom: 14px;
+line-height: 1.3;
+}
+.contact-cta p {
+font-size: 15px;
+color: var(–slate-light);
+line-height: 1.7;
+margin-bottom: 32px;
+}
+
+.availability {
+display: flex; align-items: center; gap: 10px;
+font-family: ‘Space Mono’, monospace;
+font-size: 12px;
+color: var(–teal);
+margin-top: 24px;
+}
+.dot {
+width: 8px; height: 8px;
+background: #22c55e;
+border-radius: 50%;
+box-shadow: 0 0 0 0 rgba(34,197,94,0.4);
+animation: pulse 2s infinite;
+}
+@keyframes pulse {
+0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+70% { box-shadow: 0 0 0 8px rgba(34,197,94,0); }
+100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+
+/* ── FOOTER ── */
+footer {
+background: var(–navy);
+border-top: 1px solid var(–border);
+padding: 32px 48px;
+display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo {
+font-family: ‘Space Mono’, monospace;
+font-size: 13px;
+color: var(–teal);
+}
+.footer-note {
+font-size: 12px;
+color: var(–slate);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+nav { padding: 16px 20px; }
+.nav-links { display: none; }
+section { padding: 72px 20px; }
+.hero { padding: 100px 20px 60px; }
+.about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+.skills-grid { grid-template-columns: 1fr; }
+.platforms-grid { grid-template-columns: repeat(2, 1fr); }
+footer { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+.cursor { animation: none; opacity: 1; }
+.dot { animation: none; }
+* { transition-duration: 0.01ms !important; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav>
+  <span class="nav-logo">// duke_david</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Web3 Community Professional · Lagos, Nigeria</div>
+    <div class="hero-terminal">
+      <span class="typed-line">I'm <span class="teal">Duke David</span>,</span>
+      <span class="typed-line">building <span class="gold">communities</span></span>
+      <span class="typed-line">that actually ship.<span class="cursor"></span></span>
+    </div>
+    <p class="hero-sub">
+      Community manager, moderator, and ambassador program executor with a track record across Discord, Telegram, and X. I don't just grow communities — I make them move.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Community Management</span>
+      <span class="tag">Discord · Telegram · X</span>
+      <span class="tag">KOL Outreach</span>
+      <span class="tag">Ambassador Programs</span>
+      <span class="tag">Partnerships</span>
+      <span class="tag">Web3 Native</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#experience" class="btn-primary">See My Work</a>
+      <a href="#contact" class="btn-ghost">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About</div>
+        <h2 class="section-heading">Community is the product.</h2>
+        <p>
+          I'm <strong>Anuoluwa Zaccheaus</strong>, known across Web3 as <strong>Duke David</strong>. Based in Lagos and working remotely with projects worldwide, I specialize in building the human infrastructure that keeps protocols alive — engaged members, active moderators, and ambassador networks that amplify signal without adding noise.
+        </p>
+        <p>
+          My approach is research-backed and culture-native. I don't pitch generically — I learn a project's DNA, then communicate it in a way that resonates with its specific audience, whether that's DeFi natives, NFT collectors, or builders.
+        </p>
+        <p>
+          Currently open to <strong>remote community and collaboration roles</strong> in Web3.
+        </p>
+        <div class="availability" style="margin-top: 28px;">
+          <span class="dot"></span>
+          Available for new opportunities
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <span class="stat-number">5+</span>
+          <span class="stat-label">Projects managed</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">3+</span>
+          <span class="stat-label">Years in Web3</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Remote ready</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">∞</span>
+          <span class="stat-label">Community first</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+  <div class="section-inner">
+    <div class="section-label">What I Do</div>
+    <h2 class="section-heading">Core skill set.</h2>
+    <p class="section-sub">Every role I take on draws from the same foundation — deep platform fluency, strategic thinking, and genuine Web3 culture literacy.</p>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-icon">🏛️</span>
+        <div class="skill-title">Community Management</div>
+        <div class="skill-desc">Structuring and growing healthy communities from the ground up — onboarding flows, engagement loops, retention tactics, and culture preservation at scale.</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🛡️</span>
+        <div class="skill-title">Moderation</div>
+        <div class="skill-desc">Active moderation across Discord and Telegram. Quick to identify bad actors, scalable with mod team coordination, and always protecting community tone.</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">📣</span>
+        <div class="skill-title">Ambassador Programs</div>
+        <div class="skill-desc">Full-cycle ambassador program execution: recruiting, onboarding, incentive design, content coordination, and performance tracking.</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🤝</span>
+        <div class="skill-title">Collaborations & Partnerships</div>
+        <div class="skill-desc">Identifying and pitching strategic project-to-project partnerships. Drafting proposals, managing outreach, and closing cross-community collaborations.</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">📢</span>
+        <div class="skill-title">KOL Outreach</div>
+        <div class="skill-desc">Targeted outreach to key opinion leaders on X and beyond. Research-backed, personalized pitches that land — not mass DMs that get ignored.</div>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">✍️</span>
+        <div class="skill-title">Content & Threads</div>
+        <div class="skill-desc">Crafting culture-native X threads, Discord announcements, and community updates. Sharp tone, no fluff, always on-brand for the project.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">Experience</div>
+    <h2 class="section-heading">Where I've built.</h2>
+    <p class="section-sub">A track record across moderation, collaboration, and community leadership across active Web3 projects.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-role">Collaboration Manager & Moderator</span>
+          <span class="timeline-company">MaAvatar</span>
+          <span class="timeline-period">Concluded</span>
+        </div>
+        <p class="timeline-desc">Led cross-project partnerships and handled day-to-day moderation. Managed outreach to partner communities, coordinated collaboration announcements, and maintained community standards across channels.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-role">Community Moderator</span>
+          <span class="timeline-company">Golem Network</span>
+          <span class="timeline-period">Past</span>
+        </div>
+        <p class="timeline-desc">Moderated one of the more established DeFi/compute networks in the space. Kept discussions on-topic, supported new users, and escalated issues to core team when needed.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-role">Community Moderator</span>
+          <span class="timeline-company">Arkiv Network</span>
+          <span class="timeline-period">Past</span>
+        </div>
+        <p class="timeline-desc">Active moderation role focused on maintaining a healthy, scam-free environment and supporting community engagement during key project phases.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-role">Ambassador</span>
+          <span class="timeline-company">GiftHorse</span>
+          <span class="timeline-period">Past</span>
+        </div>
+        <p class="timeline-desc">Represented the project through content creation and community advocacy. Participated in structured ambassador program, producing content and driving referral activity.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-meta">
+          <span class="timeline-role">Ambassador</span>
+          <span class="timeline-company">Quites</span>
+          <span class="timeline-period">Past</span>
+        </div>
+        <p class="timeline-desc">Community ambassador role covering X presence and Discord engagement. Contributed to growth initiatives and early community activation efforts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+
+<section id="platforms">
+  <div class="section-inner">
+    <div class="section-label">Platforms</div>
+    <h2 class="section-heading">Where I operate.</h2>
+    <p class="section-sub">Native to the platforms where Web3 actually lives.</p>
+    <div class="platforms-grid">
+      <div class="platform-card">
+        <div class="platform-logo">💬</div>
+        <div class="platform-name">Discord</div>
+        <div class="platform-role">Moderation · Community Ops</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo">✈️</div>
+        <div class="platform-name">Telegram</div>
+        <div class="platform-role">Group Management · Moderation</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo">𝕏</div>
+        <div class="platform-name">X (Twitter)</div>
+        <div class="platform-role">Threads · KOL Outreach · Growth</div>
+      </div>
+      <div class="platform-card">
+        <div class="platform-logo">💼</div>
+        <div class="platform-name">LinkedIn</div>
+        <div class="platform-role">Professional Presence</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Contact</div>
+    <h2 class="section-heading">Let's build something.</h2>
+    <div class="contact-grid">
+      <div class="contact-cta">
+        <h3>Open to remote Web3 roles worldwide.</h3>
+        <p>If you're building a community-first project and need someone who's already lived in this space — not someone learning it on the job — reach out. I respond fast and come prepared.</p>
+        <a href="https://twitter.com/iamdavidd_2" target="_blank" class="btn-primary" style="display:inline-block">Find Me on X</a>
+        <div class="availability">
+          <span class="dot"></span>
+          Currently available · Remote · Lagos, Nigeria
+        </div>
+      </div>
+      <div class="contact-links">
+        <a href="https://twitter.com/iamdavidd_2" target="_blank" class="contact-link">
+          <span class="contact-link-icon">𝕏</span>
+          <div class="contact-link-info">
+            <div class="contact-link-label">X / Twitter</div>
+            <div class="contact-link-value">@iamdavidd_2</div>
+          </div>
+        </a>
+        <a href="https://discord.com/users/iamdavidd_" target="_blank" class="contact-link">
+          <span class="contact-link-icon">💬</span>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Discord</div>
+            <div class="contact-link-value">@iamdavidd_</div>
+          </div>
+        </a>
+        <a href="https://t.me/iam_davidd_" target="_blank" class="contact-link">
+          <span class="contact-link-icon">✈️</span>
+          <div class="contact-link-info">
+            <div class="contact-link-label">Telegram</div>
+            <div class="contact-link-value">@iam_davidd</div>
+          </div>
+        </a>
+        <a href="https://linkedin.com" target="_blank" class="contact-link">
+          <span class="contact-link-icon">💼</span>
+          <div class="contact-link-info">
+            <div class="contact-link-label">LinkedIn</div>
+            <div class="contact-link-value">Duke David (Anuoluwa Zaccheaus)</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  <span class="footer-logo">// duke_david · web3 community professional</span>
+  <span class="footer-note">Lagos, Nigeria · Remote Worldwide</span>
+</footer>
+
+</body>
+</html>
